@@ -1,0 +1,26 @@
+Notes about setting up an Azure Functions project.
+
+
+https://docs.microsoft.com/en-us/azure/azure-functions/create-first-function-cli-typescript?tabs=azure-cli%2Cbrowser
+
+func init castle_blueq_af --typescript
+
+
+
+func new --name castle_blueq_mediarec_create --template "HTTP trigger" --authlevel "anonymous"
+
+
+
+[Setting up Cosmos DB]
+
+Local
+
+https://docs.microsoft.com/en-us/azure/cosmos-db/local-emulator?tabs=ssl-netstd21
+
+
+
+
+
+az functionapp create --resource-group Castle --consumption-plan-location "East US" --runtime node --runtime-version 14 --functions-version 4 --name caslte_blueq_funcs --storage-account blueqst
+
+
