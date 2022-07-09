@@ -1,0 +1,10 @@
+pandas
+numpy
+matplotlib
+seaborn
+jupyter
+cryptography
+requests
+requests_oauth2client
+beautifulsoup4
+jupyterlab

@@ -1,0 +1,6 @@
+
+// Use the following commands to create the db with a user.
+
+use blueq
+db.dbinfo.insertOne({"description": "Database for blueq application."})
+db.createUser({user: "blueq", pwd: "blueq", roles: [{ role: "readWrite", db: "blueq"}]})
