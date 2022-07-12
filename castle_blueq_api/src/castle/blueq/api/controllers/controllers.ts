@@ -7,6 +7,8 @@
  * For the decorated methods to be added to express the function
  * configureController should be called on a controller instance and
  * the express app.
+ * 
+ * Note: I should look at nestjs instead of this.
  */
 import { Express, Request, Response, NextFunction } from 'express';
 
