@@ -12,13 +12,13 @@ export class MediaReccomendationController {
     {
     }
 
-    @Post('/media_reccomendations')
+    @Post('/api/media_reccomendations')
     async create(@Req() req: Request) {
         let mr = req.body as MediaReccomendation;
         return await this.repo.create(mr);
     }
 
-    @Get('/media_reccomendations')
+    @Get('/api/media_reccomendations')
     async list(@Req() req: Request) {
         let userId = req.query["userId"];
         if (userId != null && typeof(userId) === 'string') {

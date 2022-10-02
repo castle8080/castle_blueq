@@ -1,7 +1,7 @@
 import { Inject, Module } from '@nestjs/common';
 import { ServeStaticModule } from '@nestjs/serve-static';
 
-import { MainController } from '../controllers/main_controller';
+import { DevController } from '../controllers/dev_controller';
 import { MediaReccomendationController } from '../controllers/media_reccomendation_controller';
 
 import { MongoClient } from "mongodb";
@@ -16,7 +16,7 @@ import {
         ServeStaticModule.forRoot({ rootPath: "www" })
     ],
     controllers: [
-        MainController,
+        DevController,
         MediaReccomendationController
     ],
     providers: [
