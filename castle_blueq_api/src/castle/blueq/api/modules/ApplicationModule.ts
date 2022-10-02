@@ -4,11 +4,9 @@ import { MongoClient } from "mongodb";
 
 import { LoggerMiddleware } from '../middleware/LoggerMiddleware';
 import { DevController } from '../controllers/DevController';
-import { MediaReccomendationController } from '../controllers/MediaReccomendationController';
-import {
-    MediaReccomendationRepositoryMongo,
-    MediaReccomendationRepository
-} from "../repositories/MediaReccomendationRepository";
+import { MediaRecommendationController } from '../controllers/MediaRecommendationController';
+import { MediaRecommendationRepository } from "../repositories/MediaRecommendationRepository";
+import { MediaRecommendationRepositoryMongo } from "../repositories/MediaRecommendationRepositoryMongo";
 
 @Module({
     imports: [
@@ -16,7 +14,7 @@ import {
     ],
     controllers: [
         DevController,
-        MediaReccomendationController
+        MediaRecommendationController
     ],
     providers: [
         {
@@ -27,12 +25,12 @@ import {
             }
         },
         {
-            provide: 'MediaReccomendationRepository',
-            useFactory: (mongoClient: MongoClient) =>
-                new MediaReccomendationRepositoryMongo(
+            provide: 'MediaRecommendationRepository',
+            useFactory: (mongoClient: MongoClient): MediaRecommendationRepository =>
+                new MediaRecommendationRepositoryMongo(
                     mongoClient,
                     "blueq",
-                    "media_reccomendations"
+                    "media_recommendations"
                 ),
             inject: ['MongoClient']
         }
