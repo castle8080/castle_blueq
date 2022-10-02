@@ -1,5 +1,5 @@
 import { Request } from 'express';
-import { MediaReccomendation, MediaReccomendationRepository } from '../repositories/media_reccomendation_repository';
+import { MediaReccomendation, MediaReccomendationRepository } from '../repositories/MediaReccomendationRepository';
 import { Controller, Injectable, Inject, Req, Get, Post } from '@nestjs/common';
 
 @Injectable()

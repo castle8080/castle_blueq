@@ -1,29 +1,35 @@
 import { NestFactory } from '@nestjs/core';
-import { MainModule } from './castle/blueq/api/modules/main_module';
+import * as winston from 'winston';
 
-async function bootstrap() {
-  const app = await NestFactory.create(MainModule);
-  await app.listen(3000);
+import { ApplicationModule } from './castle/blueq/api/modules/ApplicationModule';
+
+function configureLogging() {
+    winston.configure({
+        transports: [new winston.transports.Console()],
+        format: winston.format.combine(
+            winston.format.colorize(),
+            winston.format.timestamp(),
+            winston.format.printf(({ timestamp, level, message, service }) => {
+                return `[${timestamp}] ${service} ${level}: ${message}`;
+            })
+        ),
+        defaultMeta: {
+          service: "Castle-Blueq-API"
+        }
+    })
 }
-bootstrap();
 
-/*
+async function runServer() {
+    const serverPort = parseInt(process.env.PORT || "3000");
 
-import { ServerRunner } from "./castle/blueq/api/server";
-import { Container } from "./castle/myopic";
+    const app = await NestFactory.create(ApplicationModule);
+    winston.info(`Starter server on port: ${serverPort}`);
+    await app.listen(serverPort);
+}
 
 async function main() {
-    let container = new Container();
-    let modules = [
-        "./castle/blueq/api/config/configure_express",
-        "./castle/blueq/api/config/configure_controllers",
-        "./castle/blueq/api/config/configure_repositories",
-    ];
-    for (let m_name of modules) {
-        require(m_name).configure(container);
-    }
-    (await container.get<ServerRunner>("ServerRunner")).run();
+    configureLogging();
+    await runServer();
 }
 
 main();
-*/
