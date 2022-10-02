@@ -1,14 +1,14 @@
-import { Inject, Module, NestModule, MiddlewareConsumer, RequestMethod } from '@nestjs/common';
+import { Module, NestModule, MiddlewareConsumer, RequestMethod } from '@nestjs/common';
 import { ServeStaticModule } from '@nestjs/serve-static';
 import { MongoClient } from "mongodb";
 
 import { LoggerMiddleware } from '../middleware/LoggerMiddleware';
 import { DevController } from '../controllers/DevController';
-import { MediaReccomendationController } from '../controllers/MediaReccomendationController';
-import {
-    MediaReccomendationRepositoryMongo,
-    MediaReccomendationRepository
-} from "../repositories/MediaReccomendationRepository";
+import { MediaRecommendationController } from '../controllers/MediaRecommendationController';
+import { MediaRecommendationRepository } from "../repositories/MediaRecommendationRepository";
+import { MediaRecommendationRepositoryMongo } from "../repositories/MediaRecommendationRepositoryMongo";
+
+import cors from 'cors';
 
 @Module({
     imports: [
@@ -16,7 +16,7 @@ import {
     ],
     controllers: [
         DevController,
-        MediaReccomendationController
+        MediaRecommendationController
     ],
     providers: [
         {
@@ -27,12 +27,12 @@ import {
             }
         },
         {
-            provide: 'MediaReccomendationRepository',
-            useFactory: (mongoClient: MongoClient) =>
-                new MediaReccomendationRepositoryMongo(
+            provide: 'MediaRecommendationRepository',
+            useFactory: (mongoClient: MongoClient): MediaRecommendationRepository =>
+                new MediaRecommendationRepositoryMongo(
                     mongoClient,
                     "blueq",
-                    "media_reccomendations"
+                    "media_recommendations"
                 ),
             inject: ['MongoClient']
         }
@@ -41,7 +41,7 @@ import {
 export class ApplicationModule implements NestModule {
     configure(consumer: MiddlewareConsumer) {
         consumer
-            .apply(LoggerMiddleware)
+            .apply(cors(), LoggerMiddleware)
             .forRoutes({ path: 'api/*', method: RequestMethod.ALL });
     }
 }
