@@ -15,6 +15,8 @@ export interface MediaReccomendationRepository {
     create(mr: MediaReccomendation): Promise<MediaReccomendation>;
 
     listUserById(userId: string): Promise<Array<MediaReccomendation>>;
+    
+    listAll(): Promise<MediaReccomendation[]>;
 }
 
 export class MediaReccomendationRepositoryMongo implements MediaReccomendationRepository {
@@ -33,6 +35,11 @@ export class MediaReccomendationRepositoryMongo implements MediaReccomendationRe
         let c = this.collection();
         let r = await c.insertOne(mr);
         return mr;
+    }
+
+    async listAll(): Promise<MediaReccomendation[]> {
+        let c = this.collection();
+        return (await c.find({}).toArray()) as MediaReccomendation[]; 
     }
 
     async listUserById(userId: string): Promise<MediaReccomendation[]> {

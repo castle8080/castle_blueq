@@ -12,6 +12,10 @@
   "license": "ISC",
   "dependencies": {
     "@azure/msal-node": "^1.11.0",
+    "@nestjs/common": "^9.1.2",
+    "@nestjs/core": "^9.1.2",
+    "@nestjs/platform-express": "^9.1.2",
+    "@nestjs/serve-static": "^3.0.0",
     "@types/archiver": "^5.3.1",
     "@types/compression": "^1.7.2",
     "@types/cors": "^2.8.12",
@@ -25,6 +29,8 @@
     "express": "^4.18.1",
     "express-session": "^1.17.3",
     "mongodb": "^4.7.0",
+    "reflect-metadata": "^0.1.13",
+    "rxjs": "^7.5.7",
     "typescript": "^4.7.4"
   }
 }

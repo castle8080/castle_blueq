@@ -1,3 +1,14 @@
+import { NestFactory } from '@nestjs/core';
+import { MainModule } from './castle/blueq/api/modules/main_module';
+
+async function bootstrap() {
+  const app = await NestFactory.create(MainModule);
+  await app.listen(3000);
+}
+bootstrap();
+
+/*
+
 import { ServerRunner } from "./castle/blueq/api/server";
 import { Container } from "./castle/myopic";
 
@@ -15,3 +26,4 @@ async function main() {
 }
 
 main();
+*/

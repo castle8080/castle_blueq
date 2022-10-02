@@ -1,10 +1,11 @@
-import { Express, Request, Response } from 'express';
-import { httpHandler } from './controllers';
+import { Controller, Injectable, Get } from '@nestjs/common';
 
+@Controller()
+@Injectable()
 export class MainController {
 
-    @httpHandler('get', "/welcome")
-    welcome(req: Request) {
+    @Get("/welcome")
+    welcome() {
         console.log("welcome....");
         return "this is the text!";
     }
