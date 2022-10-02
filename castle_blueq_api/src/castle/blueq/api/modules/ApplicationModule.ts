@@ -1,4 +1,4 @@
-import { Inject, Module, NestModule, MiddlewareConsumer, RequestMethod } from '@nestjs/common';
+import { Module, NestModule, MiddlewareConsumer, RequestMethod } from '@nestjs/common';
 import { ServeStaticModule } from '@nestjs/serve-static';
 import { MongoClient } from "mongodb";
 
@@ -7,6 +7,8 @@ import { DevController } from '../controllers/DevController';
 import { MediaRecommendationController } from '../controllers/MediaRecommendationController';
 import { MediaRecommendationRepository } from "../repositories/MediaRecommendationRepository";
 import { MediaRecommendationRepositoryMongo } from "../repositories/MediaRecommendationRepositoryMongo";
+
+import cors from 'cors';
 
 @Module({
     imports: [
@@ -39,7 +41,7 @@ import { MediaRecommendationRepositoryMongo } from "../repositories/MediaRecomme
 export class ApplicationModule implements NestModule {
     configure(consumer: MiddlewareConsumer) {
         consumer
-            .apply(LoggerMiddleware)
+            .apply(cors(), LoggerMiddleware)
             .forRoutes({ path: 'api/*', method: RequestMethod.ALL });
     }
 }

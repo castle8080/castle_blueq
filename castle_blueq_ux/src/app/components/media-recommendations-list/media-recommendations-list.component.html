@@ -1,1 +1,6 @@
-<p>media-recommendations-list works!</p>
+<h2>Recommendations</h2>
+<ul>
+    <li *ngFor="let mrec of mediaRecommendations$ | async">
+        {{ mrec | json }}
+    </li>
+</ul>
