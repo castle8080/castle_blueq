@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "catle_blueq_ux": {
+    "castle_blueq_ux": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -20,7 +20,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/catle_blueq_ux",
+            "outputPath": "dist/castle_blueq_ux",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -72,10 +72,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "catle_blueq_ux:build:production"
+              "browserTarget": "castle_blueq_ux:build:production"
             },
             "development": {
-              "browserTarget": "catle_blueq_ux:build:development"
+              "browserTarget": "castle_blueq_ux:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -83,7 +83,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "catle_blueq_ux:build"
+            "browserTarget": "castle_blueq_ux:build"
           }
         },
         "test": {
@@ -107,5 +107,5 @@
       }
     }
   },
-  "defaultProject": "catle_blueq_ux"
+  "defaultProject": "castle_blueq_ux"
 }

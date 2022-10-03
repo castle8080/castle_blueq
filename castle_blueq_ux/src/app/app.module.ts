@@ -9,6 +9,8 @@ import { WelcomeComponent } from './components/welcome/welcome.component';
 
 import { MediaRecommendationService } from './service/media-recommendation-service';
 
+import { environment } from '../environments/environment';
+
 @NgModule({
     declarations: [
         AppComponent,
@@ -22,7 +24,7 @@ import { MediaRecommendationService } from './service/media-recommendation-servi
     providers: [
         {
             provide: MediaRecommendationService,
-            useFactory: () => new MediaRecommendationService("http://localhost:3000")
+            useFactory: () => new MediaRecommendationService(environment.apiEndpoint)
         }
     ],
     bootstrap: [AppComponent]
