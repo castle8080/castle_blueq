@@ -3,6 +3,7 @@ import subprocess
 import sys
 import shutil
 import re
+import zipfile
 
 ux_project_dir = "castle_blueq_ux"
 api_project_dir = "castle_blueq_api"
@@ -11,6 +12,8 @@ ux_dist_dir = f"{ux_project_dir}/dist/castle_blueq_ux"
 ux_dest_dir = f"{api_project_dir}/www"
 
 api_build_dir = f"{api_project_dir}/build"
+
+dist_dir = "dist"
 
 angular_asset_re = re.compile(r'((main|polyfills|runtime).*.js|favicon.ico|3rdparty.*.txt|styles.*.css)')
 
@@ -51,4 +54,21 @@ def build():
     build_api()
     build_ux()
 
-build()
+def create_zip():
+    print("Creating zip file.")
+    os.makedirs(dist_dir, exist_ok=True)
+    shutil.make_archive(f"{dist_dir}/castle_blueq", "zip", api_project_dir)
+
+def dist():
+    build()
+    create_zip()
+
+def main():
+    target = sys.argv[1] if len(sys.argv) > 1 else "dist"
+    if target not in globals():
+        raise Exception(f"target {target} not found.")
+    else:
+        print(f"Running {target}.....")
+        globals()[target]()
+
+main()
