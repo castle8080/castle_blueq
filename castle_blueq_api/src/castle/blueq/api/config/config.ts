@@ -99,7 +99,6 @@ export class Config {
 
     async loadSecrets(): Promise<void> {
         let allSecrets = await Promise.all(_.map(this.getSecretSources(), ss => {
-            console.log(ss);
             return ss.getSecrets();
         }));
         allSecrets.forEach(secrets => {
