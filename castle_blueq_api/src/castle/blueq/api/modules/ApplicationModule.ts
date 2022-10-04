@@ -8,6 +8,8 @@ import { MediaRecommendationController } from '../controllers/MediaRecommendatio
 import { MediaRecommendationRepository } from "../repositories/MediaRecommendationRepository";
 import { MediaRecommendationRepositoryMongo } from "../repositories/MediaRecommendationRepositoryMongo";
 
+import { Config } from "../config/config";
+
 import cors from 'cors';
 
 @Module({
@@ -20,11 +22,15 @@ import cors from 'cors';
     ],
     providers: [
         {
+            provide: Config,
+            useValue: Config.load()
+        },
+        {
             provide: 'MongoClient',
-            useFactory: () => {
-                let mongo_conn_str = "mongodb://blueq:blueq@localhost:27017/blueq";
-                return new MongoClient(mongo_conn_str);
-            }
+            useFactory: (config: Config) => {
+                return new MongoClient(config.getString("mongoDBURL"));
+            },
+            inject: [Config]
         },
         {
             provide: 'MediaRecommendationRepository',
