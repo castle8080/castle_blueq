@@ -1,0 +1,5 @@
+{
+    "secretSources": [
+        { "type": "file", "file": "secrets/production.json" }
+    ]
+}
