@@ -63,6 +63,10 @@ def dist():
     build()
     create_zip()
 
+def run():
+    build()
+    command(["node", "build/app.js"], api_project_dir)
+
 def main():
     target = sys.argv[1] if len(sys.argv) > 1 else "dist"
     if target not in globals():

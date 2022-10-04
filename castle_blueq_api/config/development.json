@@ -1,5 +1,5 @@
 {
     "secretSources": [
-        { "type": "file", "file": "../secrets/development.json" }
+        { "type": "file", "file": "secrets/development.json" }
     ]
 }

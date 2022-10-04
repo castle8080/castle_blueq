@@ -1,0 +1,8 @@
+Things to work on:
+
+1. Add hooks into the express server so that Angular path based routing works when the browser restarts.
+2. Add secret substitution to config.
+3. Deploy zip file to azure.
+4. Use either managed identity or setup key vault to get connection credentials.
+5. Add running of tests to overall build pipeline.
+6. Add a linter to the build.
