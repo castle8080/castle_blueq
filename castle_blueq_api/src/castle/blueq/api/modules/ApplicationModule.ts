@@ -5,6 +5,8 @@ import { MongoClient } from "mongodb";
 import { LoggerMiddleware } from '../middleware/LoggerMiddleware';
 import { DevController } from '../controllers/DevController';
 import { MediaRecommendationController } from '../controllers/MediaRecommendationController';
+import { MissingPathHandler } from '../controllers/MissingPathHandler';
+
 import { MediaRecommendationRepository } from "../repositories/MediaRecommendationRepository";
 import { MediaRecommendationRepositoryMongo } from "../repositories/MediaRecommendationRepositoryMongo";
 
@@ -18,7 +20,8 @@ import cors from 'cors';
     ],
     controllers: [
         DevController,
-        MediaRecommendationController
+        MediaRecommendationController,
+        MissingPathHandler
     ],
     providers: [
         {
@@ -47,7 +50,10 @@ import cors from 'cors';
 export class ApplicationModule implements NestModule {
     configure(consumer: MiddlewareConsumer) {
         consumer
-            .apply(cors(), LoggerMiddleware)
+            .apply(
+                cors(),
+                LoggerMiddleware
+            )
             .forRoutes({ path: 'api/*', method: RequestMethod.ALL });
     }
 }
