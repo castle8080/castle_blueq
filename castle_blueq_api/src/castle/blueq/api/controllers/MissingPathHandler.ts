@@ -9,7 +9,8 @@ export class MissingPathHandler {
     // TODO: There should be a better way to do this.
     @Get([
         "/welcome",
-        "/media_recommendations"
+        "/media_recommendations",
+        "/authentication/signin"
     ])
     async welcome(@Req() req: express.Request, @Response() resp: express.Response) {
         let absPath = await fs.realpath("www/index.html");
