@@ -1,0 +1,7 @@
+<h2>Sign In Page</h2>
+
+<div *ngIf="(identity$ | async) != null">
+  Name: {{ (identity$ | async)!.name }}
+  <br/>
+  User Name: {{ (identity$ | async)!.username }}
+</div>
